@@ -11,7 +11,9 @@ const Pagination = (props: PaginationProps) => (
       Previous Page
     </button>
 
-    <div className="text-sm text-gray-500">Page {props.currentPage}/40</div>
+    <div className="text-sm text-gray-500">
+      Page {props.currentPage}/{props.totalPages}
+    </div>
 
     <button
       onClick={() => {

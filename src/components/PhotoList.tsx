@@ -1,3 +1,4 @@
+import { useTrail, animated } from "react-spring";
 import useCurated from "../hooks/useCurated";
 import { PexelsPhoto } from "../services/pexels";
 import Pagination from "./Pagination";
@@ -5,7 +6,13 @@ import PhotoPlaceholder from "./PhotoPlaceholder";
 import PhotoThumb from "./PhotoThumb";
 
 const PhotoList = () => {
-  const { photos, loading, error, setPage, currentPage } = useCurated(1, 10);
+  const { photos, loading, error, setPage, currentPage, totalPages } =
+    useCurated(1, 10);
+  const trail = useTrail(photos.length, {
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    reset: loading,
+  });
 
   return (
     <div className="container mx-auto mt-3">
@@ -22,13 +29,17 @@ const PhotoList = () => {
       {/* ==== Success State ===== */}
       {!loading && !error && photos.length > 0 && (
         <>
-          <div className="grid grid-cols-5 gap-5">
-            {photos.map((photo: PexelsPhoto) => (
-              <PhotoThumb data={photo} />
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-5">
+            {trail.map((styles, index) => (
+              <animated.div style={styles}>
+                <PhotoThumb data={photos[index]} />
+              </animated.div>
             ))}
+            {/* {photos.map((photo: PexelsPhoto) => (
+            ))} */}
           </div>
           <Pagination
-            totalPages={40}
+            totalPages={totalPages}
             currentPage={currentPage}
             onPreviousPage={() => {
               setPage(currentPage - 1);

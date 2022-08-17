@@ -7,6 +7,7 @@ function useCurated(page: number, perPage: number) {
   const [error, setError] = useState(null);
   const [currentPage, setPage] = useState(page);
   const [currentPerPage, setPerPage] = useState(perPage);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     setLoading(true);
@@ -14,6 +15,7 @@ function useCurated(page: number, perPage: number) {
     PexelsService.getCuratedPhotos(currentPage, currentPerPage)
       .then((response) => {
         setPhotos(response.data.photos);
+        setTotalPages(response.data.total_results / response.data.per_page);
       })
       .catch((error) => {
         setError(error);
@@ -31,6 +33,7 @@ function useCurated(page: number, perPage: number) {
     setPerPage,
     currentPage,
     currentPerPage,
+    totalPages,
   };
 }
 
