@@ -1,6 +1,5 @@
 import { useTrail, animated } from "react-spring";
 import useCurated from "../hooks/useCurated";
-import { PexelsPhoto } from "../services/pexels";
 import Pagination from "./Pagination";
 import PhotoPlaceholder from "./PhotoPlaceholder";
 import PhotoThumb from "./PhotoThumb";
@@ -35,8 +34,6 @@ const PhotoList = () => {
                 <PhotoThumb data={photos[index]} />
               </animated.div>
             ))}
-            {/* {photos.map((photo: PexelsPhoto) => (
-            ))} */}
           </div>
           <Pagination
             totalPages={totalPages}
