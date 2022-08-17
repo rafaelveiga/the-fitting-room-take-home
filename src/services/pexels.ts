@@ -1,9 +1,9 @@
-import axios, { Axios } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { PEXELS_API_BASE_URL, PEXELS_API_KEY } from "../utils/constants";
 
 class PexelsService {
-  getCuratedPhotos(page: number, perPage: number): Promise<Axios> {
-    return axios.get(`${PEXELS_API_BASE_URL}/curated`, {
+  getCuratedPhotos(page: number, perPage: number): Promise<AxiosResponse> {
+    return axios.get<PexelsCuratedResponse>(`${PEXELS_API_BASE_URL}/curated`, {
       headers: {
         Authorization: `${PEXELS_API_KEY}`,
       },
@@ -16,3 +16,27 @@ class PexelsService {
 }
 
 export default new PexelsService();
+
+interface PexelsCuratedResponse {
+  next_page: string;
+  page: number;
+  per_page: number;
+  photos: PexelsPhoto[];
+  total_results: number;
+}
+
+export interface PexelsPhoto {
+  alt: string;
+  avg_color: string;
+  height: number;
+  id: string;
+  liked: boolean;
+  photographer: string;
+  photographer_id: number;
+  photographer_url: string;
+  src: {
+    original: string;
+  };
+  url: string;
+  width: number;
+}
