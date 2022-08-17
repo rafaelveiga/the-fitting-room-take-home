@@ -6,14 +6,15 @@ const PhotoThumb = (props: PhotoThumbProps) => {
 
   return (
     <div
-      className="mb-4 rounded"
+      className="rounded cursor-pointer h-96 w-full bg-cover bg-center"
       style={{
         // The reason why we are skipping tailwind custom bg-[#xxx] custom style here
         // is because we only know the avg_color value during run time.
         backgroundColor: `${props.data.avg_color}`,
+        backgroundImage: `url(${props.data.src.portrait})`,
       }}
     >
-      <img
+      {/* <img
         className="mb-4"
         src={props.data.src.original}
         style={{
@@ -22,7 +23,7 @@ const PhotoThumb = (props: PhotoThumbProps) => {
         onLoad={() => {
           setIsLoading(false);
         }}
-      />
+      /> */}
     </div>
   );
 };

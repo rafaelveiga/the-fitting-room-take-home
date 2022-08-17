@@ -9,11 +9,20 @@ const PhotoList = () => {
 
   return (
     <div className="container mx-auto mt-3">
+      {/* ==== Loading State ==== */}
       {loading && <PhotoPlaceholder />}
 
+      {/* ==== Error State ==== */}
+      {!loading && error && (
+        <div className="text-red-500 shadow py-5 px-5 text-center">
+          An error ocurred while loading the pictures. Please try again later.
+        </div>
+      )}
+
+      {/* ==== Success State ===== */}
       {!loading && !error && photos.length > 0 && (
         <>
-          <div className="columns-3">
+          <div className="grid grid-cols-5 gap-5">
             {photos.map((photo: PexelsPhoto) => (
               <PhotoThumb data={photo} />
             ))}
