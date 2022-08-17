@@ -1,10 +1,10 @@
 import useCurated from "../hooks/useCurated";
 import { PexelsPhoto } from "../services/pexels";
+import Pagination from "./Pagination";
 import PhotoThumb from "./PhotoThumb";
 
 const PhotoList = () => {
-  const { photos, loading, error, setPage, setPerPage, currentPage } =
-    useCurated(1, 10);
+  const { photos, loading, error, setPage, currentPage } = useCurated(1, 10);
 
   return (
     <div className="container mx-auto mt-3">
@@ -22,14 +22,16 @@ const PhotoList = () => {
         </div>
       )}
 
-      <button
-        onClick={() => {
+      <Pagination
+        totalPages={40}
+        currentPage={currentPage}
+        onPreviousPage={() => {
+          setPage(currentPage - 1);
+        }}
+        onNextPage={() => {
           setPage(currentPage + 1);
         }}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Button
-      </button>
+      />
     </div>
   );
 };
