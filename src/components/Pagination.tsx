@@ -3,7 +3,7 @@ const Pagination = (props: PaginationProps) => (
     <button
       onClick={() => {
         props.onPreviousPage();
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0 });
       }}
       className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
     >
@@ -15,7 +15,7 @@ const Pagination = (props: PaginationProps) => (
     <button
       onClick={() => {
         props.onNextPage();
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.scrollTo({ top: 0 });
       }}
       className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded"
     >

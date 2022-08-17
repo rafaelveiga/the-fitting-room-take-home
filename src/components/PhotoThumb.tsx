@@ -6,7 +6,7 @@ const PhotoThumb = (props: PhotoThumbProps) => {
 
   return (
     <div
-      className="mb-4"
+      className="mb-4 rounded"
       style={{
         // The reason why we are skipping tailwind custom bg-[#xxx] custom style here
         // is because we only know the avg_color value during run time.
